@@ -1,0 +1,86 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 01-Makefile.dpatch by Oliver Korff <ok@xynyx.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: This patch adds a linux-generic target to be used in other architectures. 
+## DP: The linux target was patched to include the -DINLINE32 switch
+## DP: Some variables used in the binary were preset, for detailes see line 17ff
+## DP: Disabled profiling -pg switch for the linux target
+
+@DPATCH@
+--- a/Makefile
++++ b/Makefile
+@@ -38,6 +38,38 @@
+ #   -DTRACE        N  This enables the "trace" command so that the search tree
+ #                     can be dumped while running.
+ 
++#Edited for Debian GNU/Linux
++DESTDIR =
++BIN = $(DESTDIR)/usr/games
++BOOKS = $(DESTDIR)/var/lib/crafty
++DOC = $(DESTDIR)/usr/share/doc
++ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
++       CFLAGS += -g
++endif
++ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
++       INSTALL += -s
++endif
++
++# Next option allows to build the package with debugging information.
++# DEB_BUILD_OPTIONS=debug     # This allows the generation of a build tree with
++# debugging information.
++
++#Edited for Debian GNU/Linux
++DESTDIR =
++BIN = $(DESTDIR)/usr/games
++BOOKS = $(DESTDIR)/var/lib/crafty
++DOC = $(DESTDIR)/usr/share/doc
++ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
++       CFLAGS += -g
++endif
++ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
++       INSTALL += -s
++endif
++
++# Next option allows to build the package with debugging information.
++# DEB_BUILD_OPTIONS=debug     # This allows the generation of a build tree with
++# debugging information.
++
+ default:
+ 	$(MAKE) linux-64
+ help:
+@@ -129,13 +161,21 @@
+ linux:
+ 	$(MAKE) target=LINUX \
+ 		CC=gcc CXX=g++ \
+-		CFLAGS='-pg -Wwrite-strings -Wcast-qual -Wshadow \
+-		-Wconversion -W -Wall -ansi -pedantic -pipe' \
++		CFLAGS='-pg -Wwrite-strings -Wcast-qual -Wshadow -Wconversion -W -Wall -pedantic -pipe' \
+ 		CXFLAGS='' \
+-		LDFLAGS='$(LDFLAGS) -pg -lstdc++ -lpthread' \
+-		opt='$(opt) -DTRACE -DINLINE64 -DCPUS=2' \
++		LDFLAGS='$(LDFLAGS) -lstdc++ -lpthread' \
++		opt='$(opt) -DTRACE -DINLINE32 -DCPUS=2' \
+ 		crafty-make
+ 
++linux-generic:
++	$(MAKE) target=LINUX \
++               CC=gcc CXX=g++ \
++               CFLAGS='$(CFLAGS) -Wall -pipe -O3 -fno-gcse' \
++               CXFLAGS='$(CFLAGS)' \
++               LDFLAGS='$(LDFLAGS) -lpthread -lstdc++' \
++               opt='$(opt) -DCPUS=2' \
++               crafty-make
++
+ linux-profile:
+ 	$(MAKE) target=LINUX \
+ 		CC=gcc CXX=g++ \
+@@ -335,7 +375,7 @@
+ crafty.o: *.c *.h
+ 
+ crafty:	$(objects) egtb.o
+-	$(CC) $(LDFLAGS) -o crafty $(objects) egtb.o -lm  $(LIBS)
++	$(CC) -o crafty $(objects) $(LDFLAGS) egtb.o -lm  $(LIBS)
+ 
+ egtb.o: egtb.cpp
+ 	$(CXX) -c $(CXFLAGS) $(opts) egtb.cpp

@@ -1,0 +1,7 @@
+01-Makefile.dpatch
+02-security-203541.dpatch
+03-numacompat1.dpatch
+95-spelling-thanks-lintian.dpatch
+01-annotate.patch
+10-crafty-hlp.patch
+07-drop-cpu-specific-code.patch

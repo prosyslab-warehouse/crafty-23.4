@@ -1,0 +1,66 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+############# Start arch specific targets
+
+DEB_BUILD_ARCH := $(shell dpkg-architecture -qDEB_BUILD_ARCH)
+
+TARGET := darwin
+
+ifneq (,$(findstring i386,$(DEB_BUILD_ARCH)))
+TARGET := darwin
+endif
+
+ifneq (,$(findstring amd64,$(DEB_BUILD_ARCH)))
+TARGET := linux-amd64
+endif
+
+
+ifneq (,$(findstring kfreebsd-i386,$(DEB_BUILD_ARCH)))
+TARGET := darwin
+endif
+
+ifneq (,$(findstring kfreebsd-amd64,$(DEB_BUILD_ARCH)))
+TARGET := linux-amd64
+endif
+
+
+ifneq (,$(findstring hurd-i386,$(DEB_BUILD_ARCH)))
+TARGET := darwin
+endif
+############# End arch specific targets
+
+%:
+	dh $@ 
+
+override_dh_auto_build:
+		$(MAKE) $(TARGET)
+
+
+override_dh_auto_clean:
+		$(MAKE) clean
+		rm -f *.o crafty game* log* position* books.bin book.bin book.lrn *.gcno lala
+	        rm -rf debian/tmp
+
+override_dh_auto_test:
+		@echo "Little Test"
+		@echo "sd 15" > lala
+		@echo "e4" >> lala
+		@echo "end" >> lala
+		@echo "input lala" | ./crafty
+
+override_dh_installchangelogs:
+		install -d debian/tmp
+		grep '^ \*' main.c > debian/tmp/changelog
+		dh_installchangelogs debian/tmp/changelog
+
+override_dh_compress:
+		dh_compress -Xcrafty.hlp

@@ -1,0 +1,102 @@
+.TH craftyrc 5 "December 23, 2003" "Crafty 19.8" ""
+.SH NAME
+crafty.rc, .craftyrc  - run control for \fBcrafty(6)\fP
+.RE
+
+.fam T
+.fi
+.SH DESCRIPTION
+
+A \fBCrafty\fP run control file should contain a sequence of valid
+\fBCrafty\fP commands, terminated by the command "exit" to restore
+standard input to the keyboard.  This manual page gives a skeletal
+example.  Even the few commands used are not fully explained, and
+should be looked up in "crafty.doc".  As for where the run control
+file should be, see \fBcrafty(6)\fP.
+.PP
+
+.fam T
+.fi
+.SH EXAMPLE
+
+# $HOME/.craftyrc (comments like this are fine).
+.PP
+
+! echo "Reading $HOME/.craftyrc ..."
+.br
+# Crafty's shell escape "!" lets us at system commands.
+.br
+# Echoed information will be in "log.001".
+.PP
+.PP
+# PROCESSOR USAGE:
+.PP
+mt=0
+.br
+# The "mt" command indicates how many processors to use.
+.br
+# With zero, multiprocessor support is disabled.
+.br
+# If Crafty has been compiled without SMP support,
+.br
+# a harmless error message results.
+.PP
+.PP
+# MEMORY USAGE:
+.PP
+hash=24M
+.br
+# Memory allowed for transposition hash table.
+.PP
+
+hashp=3M
+.br
+# Memory for pawn structure hash table.
+.br
+# These commands are well explained in "crafty.doc".
+.br
+# Hopefully, someone will step in and rewrite this
+.br
+# example to properly use the more intricate "adaptive".
+.PP
+
+# ENDGAME TABLEBASES:
+.PP
+egtb !
+.br
+# Enable tablebases.
+.br
+# The "!" has Crafty pat us on the head if we happen to
+.br
+# play a good move in the late endgame.
+.PP
+cache=1M
+.br
+# Define memory usage for caching tablebase probe info.
+.PP
+
+# OUTPUT TUNING:
+.PP
+show book
+.br
+# Make Crafty verbose in the opening.
+.PP
+
+# FINALLY, RESTORE CRAFTY'S INPUT TO THE KEYBOARD:
+
+exit
+.PP
+
+# End of $HOME/.craftyrc
+
+
+.SH SEE ALSO
+\fBcrafty\fP(6), /usr/share/doc/crafty
+.RE
+.PP
+
+.SH AUTHOR
+
+Robert Hyatt (hyatt@cis.uab.edu).
+.RE
+.PP

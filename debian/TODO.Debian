@@ -1,0 +1,9 @@
+List of open TODOs for crafty
+-----------------------------
+
+- Decide wether to start crafty from a crafty start script
+	- What has to be done while upgrading crafty
+	- What has to be done, while upgrading crafty books
+
+- How to proceed with the speak(.pl) utility
+- Decide what to do with the .gif pictures for the annotation mode  (Closes: #281936)

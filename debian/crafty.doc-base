@@ -1,0 +1,10 @@
+Document: crafty
+Title: Debian crafty Manual
+Author: Robert Hyatt
+Abstract: This manual describes what crafty is
+ and how it can be used to
+ play chess on Debian systems.
+Section: Games/Board
+
+Format: text
+Files: /usr/share/doc/crafty/documentation.txt.gz /usr/share/doc/crafty/FAQ.txt.gz /usr/share/doc/crafty/crafty.hlp

@@ -1,0 +1,556 @@
+crafty (23.4-7build1) focal; urgency=medium
+
+  * No-change rebuild for libgcc-s1 package name change.
+
+ -- Matthias Klose <doko@ubuntu.com>  Sun, 22 Mar 2020 16:37:01 +0100
+
+crafty (23.4-7) unstable; urgency=medium
+
+  * QA upload.
+  * Raise debhelper compat level to 9.
+  * Drop README.source. Package is in "3.0 (quilt)" format.
+  * Package is orphaned (Bug #835321), set Maintainer to "Debian QA Group".
+  * Do not generate CPU specific code. Should fix "Illegal instruction" on
+    some Pentium 4 CPUs. Closes: #850979.
+  * Drop emacs local variables from the changelog.
+  * Drop spurious spaces in several files.
+
+ -- Santiago Vila <sanvila@debian.org>  Wed, 11 Jan 2017 20:02:00 +0100
+
+crafty (23.4-6) unstable; urgency=low
+
+  * Ubuntus oneiric build faild, because with linking the order of
+    options matters. Oneiric uses ld-as-needed. Applied patch from
+    Daniel T Chen <seven.steps@gmail.com>, thanks. (Closes: #641383)
+
+ -- Oliver Korff <ok@xynyx.de>  Thu, 13 Oct 2011 22:22:40 +0200
+
+crafty (23.4-5) unstable; urgency=low
+
+  * Added a build dependency on kfreebsd-amd64 on libnuma-dev. Now FTBFS
+    should be solved there.
+  * Update to Standards-Version: 3.9.2 No changes.
+
+ -- Oliver Korff <ok@xynyx.de>  Mon, 23 May 2011 15:58:07 +0200
+
+crafty (23.4-4) unstable; urgency=low
+
+  * The changes for 23.4-3 were highly supported by Mike Rohleder
+    <mike@rohleder.de> this had to be clarified. Thanks!
+  * Stripped README.Debian a bit and deleted deprecated entries
+    of the previous maintainer, Eric Van Buggenhaut
+    <ericvb@debian.org> (Closes: #621051)
+  * The setgid r/w files in /var/lib/crafty have not been tolerable
+    and are not necessary, if crafty is used in a $HOME/.crafty
+    setup. This is ATM supported by executing the setup-crafty.sh
+    from /usr/share/doc/crafty. Removed documetation of the old
+    setup README.Debian. (Closes: #621052)
+
+ -- Oliver Korff <ok@xynyx.de>  Wed, 06 Apr 2011 17:15:49 +0200
+
+crafty (23.4-3) unstable; urgency=low
+
+  * Small changes to annotata.c make the annotation with .png graphics
+    possible. This will be useful with the crafty-bitmaps package. And
+    later close the related bug, if the crafty-bitmaps package hit the
+    contrib repository.
+  * Displaying crafty.hlp by crafty could not bedone, dh_compress
+    compresses it. So crafty.hlp is now excluded.
+
+ -- Oliver Korff <ok@xynyx.de>  Mon, 04 Apr 2011 21:10:27 +0200
+
+crafty (23.4-2) unstable; urgency=low
+
+  * Update to the version from experimental. Upload to experimental was only done,
+    not to mix up anything with the release and to test the build on architectures.
+
+ -- Oliver Korff <ok@xynyx.de>  Mon, 28 Feb 2011 12:06:49 +0100
+
+crafty (23.4-1) experimental; urgency=low
+
+  * New Upstream Version
+  * Repack of the source, to remove binary content.
+  * Upload to experimental, to test the build of the different architectures.
+  * Switch to Quilt and Source format 3.0. Moved all build intelligence to
+    the new debian rules.
+  * Because of architecture dependent building issues this upload is done to
+    experimental. The correct built on amd64 was tested on pergolesi, the other
+    systems have to be reconsidered, if the buildds show problems.
+
+ -- Oliver Korff <ok@xynyx.de>  Wed, 12 Jan 2011 08:55:22 +0100
+
+crafty (23.3-1) unstable; urgency=low
+
+  * New Upstream Version
+  * Because crafty as non-free software is now built by the buildds
+    architecture dependent building issues were encountered. They result
+    from the optimizing code inside of crafty. The solution is to include
+    the optimizing only there, where it is working. So there are now more
+    architecture dependent targets in the debian rules file.
+    (Closes: #593111)
+  * Update to Standards Version: 3.9.1
+
+ -- Oliver Korff <ok@xynyx.de>  Thu, 19 Aug 2010 11:02:47 +0200
+
+crafty (23.2-1) unstable; urgency=low
+
+  * New Upstream Version
+  * The 01-Makefile patch had to be recreated, because of too many
+    changes by upstream. The linux-generic target has been added for
+    building on other architectures. It has been tested in general
+    at i386.
+  * There was a -pg profiling switch in the linux target in
+    the Makefile, this was corrected.
+  * Corrected a small spelling error in the binary.
+
+ -- Oliver Korff <ok@xynyx.de>  Sat, 06 Mar 2010 12:17:41 +0100
+
+crafty (23.1-1) unstable; urgency=low
+
+  * Started over with repackaging from fresh debhelper templates
+  * Used a copy of: control, changelog, copyright, crafty.6, craftyrc.5,
+    README.Debian and crafty.rc.
+  * Removed menu. I don't want to depend on xboard, but this would be
+    necessary, if I use a menu entry with xboard.
+  * The 01_Makefile patch had to be adjusted.
+  * New Upstream Release
+
+ -- Oliver Korff <ok@xynyx.de>  Thu, 07 Jan 2010 00:18:16 +0100
+
+crafty (22.10-4) unstable; urgency=low
+
+  * To make autobuild possible on different architectures
+    the Makefile was extended by a linux-generic target.
+    (Closes: #549587) This was done by generating the 01-Makefile
+    patch. The former 01-build patch is included now and removed.
+  * The linux generic target was stripped of any optimizations
+  * Set a build depends for libnuma-dev only where it is
+    used by the makefile: libnuma-dev [amd64]
+
+ -- Oliver Korff <ok@xynyx.de>  Mon, 05 Oct 2009 20:44:56 +0200
+
+crafty (22.10-3) unstable; urgency=low
+
+  * To repair amd64 build issues a patch of Christoph Berg
+    <myon@debian.org> was added to the patchset
+  * The 01-build.dpatch had to be corrected
+  * Included the newest copyright notice of the upstream author
+  * Added XS-Autobuild: yes to control
+  * Wrote to nonfree@release.debian.net to clarify, if permission
+    of the author is OK, to autobuild this package and described
+    the matter in the copyright file.
+
+ -- Oliver Korff <ok@xynyx.de>  Thu, 14 May 2009 20:35:14 +0200
+
+crafty (22.10-2) unstable; urgency=low
+
+  * New-maintainer upload. (Closes: #503533)
+  * Manpage for crafty.rc was not installed, fixed
+  * Added a setup_crafty.sh to /usr/share/doc/crafty and
+    installation instructions to README.debian to help
+    with the setup
+
+ -- Oliver Korff <ok@xynyx.de>  Sat, 14 Feb 2009 11:26:15 +0100
+
+crafty (22.10-1) unstable; urgency=low
+
+  * QA upload.
+    + Set maintainer to Debian QA Group <packages@qa.debian.org>.
+  [ Barry deFreese ]
+  * Make clean not ignore errors.
+  * Remove deprecated dh_undocumented and undocumented file.
+  * Remove unneeded /etc entry from conffiles.
+  * Update source URL in copyright.
+  * Add ${misc:Depends}.
+  * Package is Arch: any. (Closes: #425252).
+  * Bump debhelper build-dep to 5.
+    + Move DH_COMPAT from rules to compat and set to 5.
+  * Bump Standards Version to 3.8.0.
+    + Menu policy transition.
+  [ Jindrich Makovicka ]
+  * New upstream release (Closes: #449178).
+  * Update watchfile (Closes: #449820).
+  * Use mmap to avoid shared memory limits (Closes: #357494, #411224).
+
+ -- Barry deFreese <bdefreese@debian.org>  Sat, 31 Jan 2009 10:27:49 -0500
+
+crafty (20.14-1) unstable; urgency=low
+
+  * New upstream release
+  * Acknowledge NMU (closes: #329273)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sun,  8 Oct 2006 15:51:42 +0200
+
+crafty (20.0-1.1) unstable; urgency=low
+
+  [ Ian Wienand ]
+  * Non maintainer upload.
+  * Add libnuma dependency (Closes: #329073).
+
+  [ Christoph Berg ]
+  * Remove object files on clean (Closes: #337576).
+
+ -- Christoph Berg <myon@debian.org>  Fri,  2 Dec 2005 01:37:16 +0100
+
+crafty (20.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Random crash at 11th move seems to be gone (closes:#325158).
+  * Crafty no more segfaults when losing game (closes:#307236)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sun, 18 Sep 2005 18:07:43 +0200
+
+crafty (19.18-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sun, 23 Jan 2005 20:50:14 +0100
+
+crafty (19.15-1) unstable; urgency=low
+
+  * New upstream release
+  * Included a linux-amd64 target in Makefile (closes:#262369)
+  * Made the online help work (typing help at the crafty prompt)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sat, 31 Jul 2004 12:14:27 +0200
+
+crafty (19.14-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Fri,  9 Jul 2004 12:24:04 +0200
+
+crafty (19.13-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Thu, 20 May 2004 13:55:00 +0200
+
+crafty (19.9-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Tue, 17 Feb 2004 11:56:36 +0100
+
+crafty (19.8-2) unstable; urgency=low
+
+  * Added crafty(6) and crafty.rc(5) (really closes: #208210)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sat, 24 Jan 2004 03:57:33 +0100
+
+crafty (19.8-1) unstable; urgency=low
+
+  * New upstream release
+  * Provides 2 separate menu entries for text and X11 modes (closes: #221884)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sat, 27 Dec 2003 22:50:42 +0100
+
+crafty (19.4-1) unstable; urgency=low
+
+  * New upstream release
+  * symlink crafty.6 to undocumented.7 (closes: #208210)
+  * Included upstream changelog into package.
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Wed, 15 Oct 2003 17:30:13 +0200
+
+crafty (19.3-3) unstable; urgency=low
+
+  * Rebuild with gcc-3.2.
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Fri, 29 Aug 2003 12:09:31 +0200
+
+crafty (19.3-2) unstable; urgency=low
+
+  * priority back to 'optional'. Awful typo... (closes: #204085)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Tue,  5 Aug 2003 01:11:08 +0200
+
+crafty (19.3-1) unstable; urgency=low
+
+  * New upstream release
+  * fixed security hole (CAN-2003-0612) in main.c (closes: #203541)
+    thus priority set to important
+  * separate i386 and non-i386 build targets (closes: #203179)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sat,  2 Aug 2003 04:14:34 +0200
+
+crafty (19.1-1) unstable; urgency=low
+
+  * New upstream release
+  * Updated Standards version to 3.5.8
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Fri, 13 Dec 2002 15:04:00 +0100
+
+crafty (19.0-1) unstable; urgency=low
+
+  * New upstream release (closes: #164110)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Thu, 10 Oct 2002 12:02:36 +0200
+
+crafty (18.13-3) unstable; urgency=low
+
+  * Corrected crafty.doc, which refered to a non-existing package
+    (closes: #145918)
+  * postinst better handles files in /var/cache/crafty (closes: #154798)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Mon,  6 May 2002 01:01:51 +0200
+
+crafty (18.13-2) unstable; urgency=low
+
+  * Keeps preinst from displaying error message when /var/cache/crafty doesn't
+    exist (closes: #133920)
+  * Opening books have been moved to various independent packages
+    (crafty-books-small, crafty-books-medtosmall, crafty-books-medium), to
+    save disk space in archives and bandwidth everytime we upload a new
+    version of the engine.
+  * Crafty engine now supports tablebases (Steven Edward's endgame database).
+    For details about how to use tablebases, see
+    /usr/share/doc/crafty/crafty.faq.gz
+  * remove dependency on g++ and build-dep on sharutils
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Thu, 21 Feb 2002 20:00:52 +0100
+
+crafty (18.13-1) unstable; urgency=low
+
+  * New upstream release
+  * I forgot to close this one ... (closes: #120157)
+  * Wrap Description: lines (closes: #131007).
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Fri, 25 Jan 2002 13:29:01 +0100
+
+crafty (18.12-5) unstable; urgency=low
+
+  * Added full path in menu entry.
+  * Included Mark Brown's patch so we can build on PPC (closes: #128335).
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Wed, 12 Dec 2001 21:24:32 +0100
+
+crafty (18.12-4) unstable; urgency=high
+
+  * Corrected syntax error in debian/preinst (closes: #121488)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Wed, 28 Nov 2001 12:15:06 +0100
+
+crafty (18.12-3) unstable; urgency=low
+
+  * Check dangling empty /var/cache/crafty. (closes: #120115)
+  * Added a "Chess" hint in menu. (closes: #121023)
+  * Updated files in /usr/share/doc-base
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Mon, 26 Nov 2001 22:44:17 +0100
+
+crafty (18.12-2) unstable; urgency=low
+
+  * Added a text entry in menu.
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Mon, 19 Nov 2001 17:33:47 +0100
+
+crafty (18.12-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Fri, 16 Nov 2001 13:08:00 +0100
+
+crafty (18.11-1) unstable; urgency=low
+
+  * New upstream release : fixes some bugs in penalty algorithms.
+  * crafty now Recommends: xboard instead of Suggests:'ing it
+  * X menu now launches xboard (closes: bug#110137)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sun,  7 Oct 2001 13:44:37 +0200
+
+crafty (18.10-2) unstable; urgency=low
+
+  * Corrected preinst (closes: bug#106301)
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Tue, 24 Jul 2001 01:24:40 +0200
+
+crafty (18.10-1) unstable; urgency=low
+
+  * New upstream release
+  * Added lintian override file.
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Sat,  7 Jul 2001 02:40:16 +0200
+
+crafty (18.9-1) unstable; urgency=low
+
+  * New upstream release
+  * changed owner.group of /var/lib/crafty to root.games
+  * turned to DH_COMPAT=2
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Tue,  5 Jun 2001 00:40:51 +0200
+
+crafty (17.13-7) unstable; urgency=low
+
+  * New Description: in debian/control file.
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Thu, 17 May 2001 17:49:18 +0200
+
+crafty (17.13-6) unstable; urgency=low
+
+  * Corrected postrm
+
+ -- Eric Van Buggenhaut <ericvb@debian.org>  Wed, 11 Apr 2001 18:35:44 +0200
+
+crafty (17.13-5) unstable; urgency=low
+
+  * Included Vincent Broman's patch in option.c
+  * Added g++ to Build-Depends:
+  * Corrected main.c, closes: bug#74699.
+  * Made /usr/games/crafty executable, closes: bug#82564.
+  * Files in /var/cache have been moved, closes: bug#80877.
+  * This is a newer (!) version, so closes: bug#82021.
+
+ -- Eric Van Buggenhaut <Eric.VanBuggenhaut@AdValvas.be>  Mon, 12 Mar 2001 16:04:58 +0100
+
+crafty (17.13-4) unstable; urgency=low
+
+  * New preinst, postinst, prerm, postrm scripts managing move of files from old
+  * /var/cache/crafty and /etc/craftyrc.
+  * Corrected main.c, closes: bug#74699.
+  * Added debhelper to Build-Depends: in debian/control
+  * Made /usr/games/crafty executable, closes: bug#82564.
+  * Linked temporarily manpage to undocumented.7, closes: bug#19783.
+  * Files in /var/cache have been moved, closes: bug#80877.
+  * This is a newer (!) version, so closes: bug#82021.
+
+ -- Eric Van Buggenhaut <Eric.VanBuggenhaut@AdValvas.be>  Thu, 22 Feb 2001 17:30:37 +0100
+
+crafty (17.13-3) unstable; urgency=low
+
+  * Corrected debian/control
+
+ -- Eric Van Buggenhaut <Eric.VanBuggenhaut@AdValvas.be>  Tue, 20 Feb 2001 12:38:28 +0100
+
+crafty (17.13-2) unstable; urgency=low
+
+  * Compressed the opening books files.
+
+ -- Eric Van Buggenhaut <Eric.VanBuggenhaut@AdValvas.be>  Sat, 17 Feb 2001 13:19:22 +0100
+
+crafty (17.13-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Eric Van Buggenhaut <Eric.VanBuggenhaut@AdValvas.be>  Sat, 28 Oct 2000 19:00:49 +0100
+
+crafty (17.9-1) unstable; urgency=low
+
+  * New upstream source. New maintainer (my first .deb package).
+  * Moved opening books to a more compliant place.
+  * Introduced new preinst maintainer script that conforms to actual policy.
+
+ -- Eric Van Buggenhaut <Eric.VanBuggenhaut@AdValvas.be>  Mon, 09 Oct 2000 01:10:55 -0100
+
+crafty (17.6-1) unstable; urgency=low
+
+  * New upstream source.
+
+ -- Paul Serice <ugs@debian.org>  Tue, 11 Jan 2000 22:00:30 -0600
+
+crafty (16.17-4) unstable; urgency=low
+
+  * Linked against libc6-2.1.
+  * "craftywatcher" is simultaneously uploaded to satisfy suggestion
+    introduced in v16.17-3.
+
+ -- Paul Serice <ugs@debian.org>  Mon, 25 Oct 1999 21:54:55 -0500
+
+crafty (16.17-3) unstable; urgency=low
+
+  * Suggest "craftywatcher".
+
+ -- Paul Serice <ugs@debian.org>  Tue,  7 Sep 1999 02:47:08 -0500
+
+crafty (16.17-2) unstable; urgency=low
+
+  * Changed CFLAGS=-O3 to CFLAGS=-O to build a version of Crafty
+    that does not core dump on Sparcs.  Tested on kubrick.
+
+ -- Paul Serice <ugs@debian.org>  Sun,  5 Sep 1999 03:43:05 -0500
+
+crafty (16.17-1) unstable; urgency=low
+
+  * New upstream release. (#39935)
+  * Hack to add support for "/etc/craftyrc" is no longer required as
+    Crafty now directly supports "/etc/crafty.rc" [sic] via an
+    environment variable, but this does require renaming the global
+    configuration file.
+  * Learning has been enabled by pointing CRAFTY_BOOK_PATH and
+    CRAFTY_TB_PATH to /var/cache/crafty. (#39969)
+  * Changed the Makefile to not use the intel specific assembly
+    language modules and switched to use pthread mutexes for SMP
+    builds.  This will make compiling on an alpha automatic.
+    This has been tested successfully on faure. (#37445)
+  * Crafty's license has been extensively revised making Crafty
+    non-free.
+
+ -- Paul Serice <ugs@debian.org>  Fri,  3 Sep 1999 20:08:15 -0500
+
+crafty (16.2-2) unstable; urgency=low
+
+  * Use pristine-as-possible sources.
+
+ -- Paul Serice <ugs@debian.org>  Sat, 19 Dec 1998 18:13:23 -0600
+
+crafty (16.2-1) unstable; urgency=low
+
+  * New upstream source.
+
+ -- Paul Serice <ugs@debian.org>  Sat, 19 Dec 1998 06:04:48 -0600
+
+crafty (16.1-1) unstable; urgency=low
+
+  * New upstream source.
+
+ -- Paul Serice <ugs@debian.org>  Thu, 17 Dec 1998 04:36:30 -0600
+
+crafty (15.20-4) unstable; urgency=low
+
+  * Applied Roman Hodek's patch so it can compile under m68k. (#29263)
+
+ -- Paul Serice <ugs@debian.org>  Thu, 17 Dec 1998 03:44:13 -0600
+
+crafty (15.20-3) unstable; urgency=low
+
+  * Removed the tcsh shell script for craftywatch.
+  * Wrote a Motif version of craftywatch which is now suggested.
+
+ -- Paul Serice <ugs@debian.org>  Mon, 16 Nov 1998 00:57:03 -0600
+
+crafty (15.20-2) unstable; urgency=low
+
+  * Corrected maintainer's address.
+
+ -- Paul Serice <ugs@debian.org>  Sat, 17 Oct 1998 10:43:09 -0500
+
+crafty (15.20-1) unstable; urgency=low
+
+  * Added the book of opening moves.
+  * Added a /etc/craftyrc global configuration file.
+  * Moved Crafty into free.
+  * Bug fix in upstream source that was causing crafty to crash
+    if the position.lrn file was read only.
+  * New upstream source.
+  * New maintainer.
+
+ -- Paul Serice <ugs@debian.org>  Sat,  3 Oct 1998 21:40:09 -0500
+
+crafty (14.12-1) unstable; urgency=low
+
+  * New upstream.
+
+ -- Ole J. Tetlie <olet@debian.org>  Sat, 21 Mar 1998 13:16:11 +0100
+
+crafty (14.11-2) frozen unstable; urgency=low
+
+  * Added undocumented manpage.
+  * Fixed bug in source distribution. (#19783)
+
+ -- Ole J. Tetlie <olet@debian.org>  Fri, 20 Mar 1998 21:40:28 +0100
+
+crafty (14.11-1) unstable; urgency=low
+
+  * Initial debianization.
+
+ -- Ole J. Tetlie <olet@debian.org>  Mon,  9 Mar 1998 11:24:27 +0100

@@ -1,0 +1,23 @@
+From: Santiago Vila <sanvila@debian.org>
+Subject: Do not generate CPU specific code, it may not work on every Debian supported machine
+
+--- a/Makefile
++++ b/Makefile
+@@ -143,7 +143,7 @@
+ linux-amd64-profile:
+ 	$(MAKE) target=LINUX \
+ 		CC=gcc CXX=g++ \
+-                CFLAGS='-Wall -pipe -fprofile-arcs -fomit-frame-pointer -O3 -march=k8' \
++                CFLAGS='-Wall -pipe -fprofile-arcs -fomit-frame-pointer -O3' \
+ 		CXFLAGS='' \
+ 		LDFLAGS='$(LDFLAGS) -lpthread -lnuma -fprofile-arcs -lstdc++' \
+ 		opt='$(opt) -DINLINE64 -DCPUS=8 -DNUMA -DLIBNUMA' \
+@@ -152,7 +152,7 @@
+ linux-amd64:
+ 	$(MAKE) target=LINUX \
+ 		CC=gcc CXX=g++ \
+-                CFLAGS='-Wall -pipe -fbranch-probabilities -fomit-frame-pointer -O3 -march=k8' \
++                CFLAGS='-Wall -pipe -fbranch-probabilities -fomit-frame-pointer -O3' \
+ 		CXFLAGS='' \
+ 		LDFLAGS='$(LDFLAGS) -lpthread -lnuma -lstdc++' \
+ 		opt='$(opt) -DINLINE64 -DCPUS=8 -DNUMA -DLIBNUMA' \

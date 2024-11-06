@@ -1,0 +1,41 @@
+crafty for Debian
+-----------------
+For now I provide a setup_crafty.sh in 
+/usr/share/doc/crafty. You can copy it to a location of your 
+choice and do:
+
+chmod +x setup_crafty.sh 
+
+and then
+
+./setup_crafty.sh
+
+This will determine the users home directory. Add a .crafty directory and 
+copy some files to this location. Environment Variables have to be 
+set too. You can do this in your .bashrc file.
+
+Logout / login into your Windowmanager afterwards, to have 
+this environment variables set.
+
+Maybe you want to do it for the shell only:
+
+export CRAFTY_LOG_PATH=$HOME/.crafty
+export CRAFTY_RC_PATH=$HOME/.crafty
+export CRAFTY_TB_PATH=$HOME/.crafty
+export CRAFTY_BOOK_PATH=$HOME/.crafty
+
+Crafty uses the crafty.rc file for basic settings. Any setting can be set on 
+the commandline. A good start of settings for a modern computer might be:
+
+hash=24M
+hashp=8M
+show book
+egtb=0
+mt=2
+exit
+
+Games are usually saved to cwd. With the environment settings of setup_crafty 
+the games are saved to ~/.crafty
+
+
+ -- Oliver Korff <ok@xynyx.de>  Wed, 06 Apr 2011 17:15:49 +0200

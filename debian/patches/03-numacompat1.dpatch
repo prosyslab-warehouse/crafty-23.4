@@ -1,0 +1,17 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 03-numacompat1.dpatch by  <myon@debian.org>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: A missing include for numacompat1.h is set by this patch.
+
+@DPATCH@
+--- a/main.c
++++ b/main.c
+@@ -7,6 +7,7 @@
+ #endif
+ #if defined(NUMA) && defined(LINUX)
+ #  include <numa.h>
++#  include <numacompat1.h>
+ #endif
+ #include <signal.h>
+ /* last modified 11/05/10 */

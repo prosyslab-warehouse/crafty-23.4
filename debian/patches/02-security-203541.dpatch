@@ -1,0 +1,51 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 02-security-203541.dpatch by  <bdefreese@bddebian3.bddebian.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Don't strcpy argv[1]
+
+@DPATCH@
+--- a/main.c
++++ b/main.c
+@@ -3954,7 +3954,10 @@
+   if (argc > 1) {
+     for (i = 1; i < argc; i++) {
+       if (strstr(argv[i], "path") || strstr(argv[i], "log")) {
+-        strcpy(buffer, argv[i]);
++       //This is a security flaw (see http://bugs.debian.org/203541
++       //strcpy(buffer, argv[i]);
++       memset(buffer,'\0',sizeof(buffer));
++        strncpy(buffer,argv[i],sizeof(buffer)-1);
+         result = Option(tree);
+         if (result == 0)
+           printf("ERROR \"%s\" is unknown command-line option\n", buffer);
+@@ -4033,7 +4036,10 @@
+     for (i = 1; i < argc; i++)
+       if (strcmp(argv[i], "c"))
+         if (!strstr(argv[i], "path")) {
+-          strcpy(buffer, argv[i]);
++         //This is a security flaw (see http://bugs.debian.org/203541
++         //strcpy(buffer, argv[i]);
++         memset(buffer,'\0',sizeof(buffer));
++          strncpy(buffer,argv[i],sizeof(buffer)-1);
+           result = Option(tree);
+           if (result == 0)
+             printf("ERROR \"%s\" is unknown command-line option\n", buffer);
+@@ -4062,11 +4068,16 @@
+  */
+ #if defined(UNIX)
+   input_stream = fopen(".craftyrc", "r");
+-  if (!input_stream)
++  if (!input_stream) {
+     if ((pwd = getpwuid(getuid()))) {
+       sprintf(path, "%s/.craftyrc", pwd->pw_dir);
+       input_stream = fopen(path, "r");
+     }
++    if (!input_stream) {
++      sprintf (path, "%s/crafty.rc", rc_path);
++      input_stream = fopen (path, "r");
++    }
++  }
+   if (input_stream)
+ #else
+   sprintf(crafty_rc_file_spec, "%s/crafty.rc", rc_path);

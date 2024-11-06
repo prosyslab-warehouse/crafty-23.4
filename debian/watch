@@ -1,0 +1,3 @@
+version=3
+
+ftp://ftp.cis.uab.edu/pub/hyatt/source/crafty-([\d.]+)\.zip

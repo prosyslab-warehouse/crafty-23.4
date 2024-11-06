@@ -1,0 +1,163 @@
+This package was debianized by Eric Van Buggenhaut
+<Eric.VanBuggenhaut@AdValvas.be> on
+Sun,  8 Oct 2000 23:42:00 +0100.
+
+It is now maintained by: 
+Oliver Korff <ok@xynyx.de>  Thu, 14 May 2009 20:35:14 +0200
+
+It was downloaded from http://www.cctchess.com
+
+As of version 22.10, the source was downloaded from:
+ftp://ftp.cis.uab.edu/pub/hyatt/source/
+
+Upstream Author: Robert M. Hyatt <hyatt@cis.uab.edu>
+
+Copyright:
+
+ *******************************************************************************
+ *                                                                             *
+ *  Crafty, copyright 1996-2009 by Robert M. Hyatt, Ph.D., Associate Professor *
+ *  of Computer and Information Sciences, University of Alabama at Birmingham. *
+ *                                                                             *
+ *  Crafty is a team project consisting of the following members.  These are   *
+ *  the people involved in the continuing development of this program, there   *
+ *  are no particular members responsible for any specific aspect of Crafty.   *
+ *                                                                             *
+ *     Michael Byrne, Pen Argyle, PA.                                          *
+ *     Robert Hyatt, University of Alabama at Birmingham.                      *
+ *     Tracy Riegle, Houston, TX.                                              *
+ *     Peter Skinner, Edmonton, AB  Canada.                                    *
+ *     Ted Langreck                       .                                    *
+ *                                                                             *
+ *  All rights reserved.  No part of this program may be reproduced in any     *
+ *  form or by any means, for other than your personal use, without the        *
+ *  express written permission of the authors.  This program may not be used   *
+ *  in whole, nor in part, to enter any computer chess competition without     *
+ *  written permission from the authors.  Such permission will include the     *
+ *  requirement that the program be entered under the name "Crafty" so that    *
+ *  the program's ancestry will be known.                                      *
+ *                                                                             *
+ *  Copies of the source must contain the original copyright notice intact.    *
+ *                                                                             *
+ *  Any changes made to this software must also be made public to comply with  *
+ *  the original intent of this software distribution project.  These          *
+ *  restrictions apply whether the distribution is being done for free or as   *
+ *  part or all of a commercial product.  The authors retain sole ownership    *
+ *  and copyright on this program except for 'personal use' explained below.   *
+ *                                                                             *
+ *  Personal use includes any use you make of the program yourself, either by  *
+ *  playing games with it yourself, or allowing others to play it on your      *
+ *  machine,  and requires that if others use the program, it must be clearly  *
+ *  identified as "Crafty" to anyone playing it (on a chess server as one      *
+ *  example).  Personal use does not allow anyone to enter this into a chess   *
+ *  tournament where other program authors are invited to participate.  IE you *
+ *  can do your own local tournament, with Crafty + other programs, since this *
+ *  is for your personal enjoyment.  But you may not enter Crafty into an      *
+ *  event where it will be in competition with other programs/programmers      *
+ *  without permission as stated previously.                                   *
+ *                                                                             *
+ *  Crafty is the "son" (direct descendent) of Cray Blitz.  it is designed     *
+ *  totally around the bit-board data structure for reasons of speed of ex-    *
+ *  ecution, ease of adding new knowledge, and a *significantly* cleaner       *
+ *  overall design.  it is written totally in ANSI C with some few UNIX system *
+ *  calls required for I/O, etc.                                               *
+
+Debian has received written permission in the form of an e-mail from
+Professor Hyatt:
+
+Robert M. Hyatt wrote:
+> 
+> you have my permission to distribute this code just as you did
+> before.  I am only trying to stop people from copying the source
+> and then calling it their own and entering it into chess tournamennts,
+> something that has now happened at least 3 times...
+> 
+> Bob
+> 
+> Robert Hyatt                    Computer and Information Sciences
+> hyatt@cis.uab.edu               University of Alabama at Birmingham
+> (205) 934-2213                  115A Campbell Hall, UAB Station
+> (205) 934-5473 FAX              Birmingham, AL 35294-1170
+
+
+On Thu 14. Mai 22:13:48 CEST 2009 autobuilding was requested 
+by Oliver Korff <ok@xynyx.de> of nonfree@release.debian.net, 
+this is the mail snippet:
+
+...
+I would like to request autobuilding crafty. The licence is strictly non-free, 
+but we have the explicit written permission to redistribute of the upstream 
+author.
+
+I have had contact with him recently and am convinced that the reason for 
+making it non-free, is the code abuse in computer chess tournaments as 
+mentioned in the copyright file.
+
+We also do not alter craftys name or copyright notice, so everything that 
+matters to the upstream author stays intact. Autobuilding does not interfere 
+with that.
+...
+
+
+////////////////////////////////////////////////////////////////////////
+// OLD COPYRIGHT/LICENSE FOLLOWS
+////////////////////////////////////////////////////////////////////////
+
+*******************************************************************************
+*                                                                             *
+*  Crafty, copyrighted 1996 by Robert M. Hyatt, Ph.D., Associate Professor    *
+*  of Computer and Information Sciences, University of Alabama at Birmingham. *
+*                                                                             *
+*  All rights reserved.  No part of this program may be reproduced in any     *
+*  form or by any means, for any commercial (for profit/sale) reasons.  This  *
+*  program may be freely distributed, used, and modified, so long as such use *
+*  does not in any way result in the sale of all or any part of the source,   *
+*  the executables, or other distributed materials that are a part of this    *
+*  package.  any changes made to this program must also be made public in     *
+*  the spirit that the original source is distributed.                        *
+*                                                                             *
+*******************************************************************************
+
+
+Does this copyright mean Crafty cannot be redistributed by the usual
+Debian CD redistributors?  Well, I asked Prof. Hyatt this exact
+question via e-mail.  The conversation was as follows:
+
+> Third, I have some questions regarding the extent to which you'll
+> allow Debian to distribute Crafty.  As I'm sure you know, Debian puts
+> all of its available software packages on its FTP server and freely
+> distributes them.  Because Debian is available for free, many
+> companies put Debian on a CD and distribute the CD -- for a profit.  
+> Some of the companies donate part of the proceeds to help Debian or 
+> GNU or Linux in general.  The cheapest version of the CD that I'm
+> aware of is CheapBytes's at http://www.cheapbytes.com/.  They are  
+> selling "Debian 1.2 Plus 2 CD-ROM Linux Archive Set" for $5.99.
+> 
+
+not a problem with me at all...
+
+
+> Many programmers do not want their product sold by these CD
+> distributors.  So, Debian maintains two different sets of software
+> packages.  The first set (called the "Main Distribution") is for the
+> packages which come with no copyright restrictions.  Thus, the CD
+> manufacturers assume they can distribute the entire first set without
+> having to check the individual copyrights of each package separately.
+> The second set (called "Non-Free") is for the packages with   
+> restrictions on distribution which put the CD manufacturers on notice
+> that they probably shouldn't distribute the package, and if they do,
+> they'll need to closely check the restrictions.
+> 
+> From what I have read in "main.c", you will allow Debian to *freely*
+> distribute the Crafty source or executable.  However, you do not want
+> people selling Crafty as part of a CD package or otherwise.  If this 
+> is correct, I will put Crafty in the "Non-Free" section.
+> 
+
+no...  I simply don't want someone to market crafty as a chess program.
+Including it with something else is fine, knowing that there will be
+newer (and better) versions for free on my ftp machine anyway.  I put
+that restriction in because there was a company that was making waves
+about "Crafty is just too strong to be free, we are going to modify it
+a little and then sell it..."
+

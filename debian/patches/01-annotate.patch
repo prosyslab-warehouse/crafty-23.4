@@ -1,0 +1,24 @@
+Description: Use FHS compliant paths by default
+Author: Oliver Korff <ok@xynyx.de>
+Last-Update: 2011-10-13
+
+--- a/annotate.c
++++ b/annotate.c
+@@ -568,7 +568,7 @@
+   for (rank = RANK8; rank >= RANK1; rank--) {
+     fprintf(annotate_out, "<TR>\n");
+     for (file = FILEA; file <= FILEH; file++) {
+-      (void) strcpy(filename, "bitmaps/");
++      (void) strcpy(filename, "/usr/share/crafty-bitmaps/");
+       if ((rank + file) % 2)
+         (void) strcat(filename, "w");
+       else
+@@ -628,7 +628,7 @@
+           strcpy(alt, " ");
+           break;
+       }
+-      strcat(filename, ".gif");
++      strcat(filename, ".png");
+       fprintf(annotate_out, "<TD><IMG ALT=\"%s\" SRC=\"%s\"></TD>\n", alt,
+           filename);
+     }

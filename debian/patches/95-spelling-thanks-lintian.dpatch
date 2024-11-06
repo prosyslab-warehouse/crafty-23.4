@@ -1,0 +1,18 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 95-spelling-thanks-lintian.dpatch by Oliver Korff <ok@xynyx.de>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Spelling correction, thanks to litian for annoing everybody
+
+@DPATCH@
+--- a/option.c
++++ b/option.c
+@@ -1514,7 +1514,7 @@
+           nargs--;
+           targs++;
+         } else
+-          printf("error, name must be preceeded by +/- flag.\n");
++          printf("error, name must be preceded by +/- flag.\n");
+         nargs--;
+         targs++;
+       }
